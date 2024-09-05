@@ -27,6 +27,9 @@ $router->group(['middleware' => ['x-api-key'],'prefix' => 'auth'], function ($ro
 $router->group(['middleware' => ['x-api-key','app_user'],'prefix' => 'attend'], function ($router) {
 
     $router->post('check_in', 'UserAttendController@check_in');
+    $router->post('check_out/{id}', 'UserAttendController@check_out');
+
+    $router->get('get_working_hours', 'UserAttendController@get_working_hours');
 
 });
 
