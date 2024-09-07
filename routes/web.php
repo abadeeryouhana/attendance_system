@@ -31,5 +31,8 @@ $router->group(['middleware' => ['x-api-key','app_user'],'prefix' => 'attend'], 
 
     $router->get('get_working_hours', 'UserAttendController@get_working_hours');
 
-});
 
+
+});
+$router->post('notify/store', 'UserNotificationController@store');
+$router->get('notify/index', 'UserNotificationController@index');

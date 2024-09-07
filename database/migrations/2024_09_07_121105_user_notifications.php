@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_attendance', function (Blueprint $table) {
+        Schema::create('user_notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->notNull();
-            $table->dateTime('check_in_datetime')->nullable();
-            $table->dateTime('check_out_datetime')->nullable();
-            $table->bigInteger('working_hours')->nullable();
+            $table->string('title',500)->nullable();
+            $table->string('body',1000)->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_attendance');
+        Schema::dropIfExists('user_notifications');
     }
 };

@@ -33,8 +33,9 @@ DB_DATABASE=attendance_system
 DB_USERNAME=root
 DB_PASSWORD=root
 
-Add the following X-API-KEY to the .env file
+Add the following X-API-KEY and JWT_SECRET to the .env file for the middleware
 
+JWT_SECRET=ER7qm76xnCiFanXbgi00RS8WYPSdmGh1udK7GsoQecQO6UHkJllkZS35MS3nsfbU
 X_API_KEY=ER7qm76xnCiFanXbgi00RS8WYPSdmGh1udK7GsoQecQO6UHkJllkZS35MS3nsfbU
 
 Run migrations to create the required tables:
@@ -120,6 +121,19 @@ Response:
         "total_number_of_hours": 2
     }
 
+4-Get User Notifications
+GET notify/index
+Request Body:
+    {
+        "user_id":1  (optional)
+    }
+Response:
+    {
+        "status": true,
+        "data": (array of objects),
+      
+    }
+
 ## Error Handling
 Errors are returned as JSON with appropriate HTTP status codes. Example:
 
@@ -133,6 +147,11 @@ Errors are returned as JSON with appropriate HTTP status codes. Example:
 there are 2 units test
 1-tests/GetWorkingHours
 2-tests/LoginTest
+
+## Configure the Cron on Your Server to notify each user its working hours :
+
+* * * * * php /path-to-your-project/artisan schedule:run >> /dev/null 2>&1
+
 
 ## License
 
