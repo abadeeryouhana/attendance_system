@@ -25,7 +25,7 @@ class UserController extends Controller{
                 'status' => false,
                 'error_code' => 422,
                 'errors' => $validator->errors(),
-            ],  200);
+            ],  422);
         }
 
         $credentials = [

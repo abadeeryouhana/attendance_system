@@ -26,7 +26,7 @@ class ApiAuthenticate
         {
             $apiKey = $request->header('x-api-key');
 
-            if($apiKey !== env('JWT_SECRET')) {
+            if($apiKey !== env('X_API_KEY')) {
                 return response()->json([
                     'status' => false,
                     'message' => 'Invalid X-API-KEY',
