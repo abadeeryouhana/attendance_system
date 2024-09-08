@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use App\Models\UserDevice;
 class UserController extends Controller{
 
 
@@ -40,8 +40,18 @@ class UserController extends Controller{
                 'error_code' => 401],
                  200);
         }
-
         $user=Auth::guard('app_user')->user();
+          /********* Add user device *********** */
+            if($request->fcm_token!='' && $request->fcm_token!=null && $request->mac_address!='' && $request->mac_address!=null)
+            {
+                $user_device = UserDevice::create([
+                    'user_id' => $user->id,
+                    'fcm_token' => $request->fcm_token ,
+                    'mac_address' => $request->mac_address
+                ]);
+            }
+
+
 
         return response()->json([
             'message' => 'Logged successfully',

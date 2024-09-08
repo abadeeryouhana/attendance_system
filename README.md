@@ -53,7 +53,9 @@ POST auth/login
 Request Body:
     {
         "user_id":"user123456",
-        "password":"123456"
+        "password":"123456",
+        "fcm_token":"123456789",    // optional if the user allow the notification
+        "mac_address":"mac_address1234"     // optional  if the user allow the notification
     }
 Response:
     {
